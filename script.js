@@ -1,6 +1,12 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 
+inputBox.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
+
 function addTask() {
     if (inputBox.value === '') {
         alert("don't leave me blank !");
@@ -23,6 +29,7 @@ listContainer.addEventListener("click", function(e){
     } 
     else if (e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
+        saveData();
     }
 }, false);
 
@@ -32,4 +39,10 @@ function saveData(){
 function showTask(){
     listContainer.innerHTML = localStorage.getItem("data");
 }
+
+function clearTasks() {
+    localStorage.removeItem("data");
+    listContainer.innerHTML = "";
+}
+
 showTask();
