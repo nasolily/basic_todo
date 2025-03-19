@@ -72,18 +72,23 @@ input {
 }
 
 button {
-    color: #705858;
+    color: white;
     border: none;
-    background-color: pink;
+    background-color: rgb(236, 183, 192);
     border-radius: 30%;
     outline: none;
     padding: 4px 7px;
     
 }
 
+button:hover {
+    background-color: rgb(206, 165, 172);
+}
+
 ul li {
     list-style: none;
     font-size: 15px;
+    color: #c291a6;
     padding: 14px 8px 12px 50px;
     user-select: none;
     cursor: url("images/hand-pointer.png");
@@ -127,4 +132,19 @@ ul li span {
 ul li span:hover{
     background: rgba(224, 207, 211, 0.76);
     cursor: url("images/hand-pointer.png"), auto;
+}
+
+.clear-button {
+    background-color: #db99ba; 
+    color: white; 
+    border: none;
+    padding: 8px 16px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 14px; 
+    margin-top: 10px; 
+}
+
+.clear-button:hover {
+    background-color: rgb(187, 131, 164);
 }
