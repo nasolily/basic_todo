@@ -5,12 +5,13 @@ let isDragging = false;
 let offsetX, offsetY;
 
 const pomodoroTimer = document.getElementById("pomodoro-timer");
+const dragHandle = document.getElementById("drag-handle");
 
-pomodoroTimer.addEventListener("mousedown", (e) => {
+dragHandle.addEventListener("mousedown", (e) => {
     isDragging = true;
     offsetX = e.clientX - pomodoroTimer.offsetLeft;
     offsetY = e.clientY - pomodoroTimer.offsetTop;
-    pomodoroTimer.style.cursor = "grabbing"; // Change cursor while dragging
+    pomodoroTimer.style.cursor = "grabbing";
 });
 
 document.addEventListener("mousemove", (e) => {
@@ -21,7 +22,7 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("mouseup", () => {
     isDragging = false;
-    pomodoroTimer.style.cursor = "grab"; // Reset cursor
+    pomodoroTimer.style.cursor = "grab";
 });
 
 // Rest of your Pomodoro timer code (startTimer, stopTimer, updateDisplay)
