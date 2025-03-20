@@ -3,6 +3,8 @@ let timeLeft;
 let isWorkTime = true;
 let isDragging = false;
 let offsetX, offsetY;
+let workMinutes = parseInt(document.getElementById("workTime").value);
+let breakMinutes = parseInt(document.getElementById("breakTime").value);
 
 const pomodoroTimer = document.getElementById("pomodoro-timer");
 const dragHandle = document.getElementById("drag-handle");
@@ -25,11 +27,9 @@ document.addEventListener("mouseup", () => {
     pomodoroTimer.style.cursor = "grab";
 });
 
-// Rest of your Pomodoro timer code (startTimer, stopTimer, updateDisplay)
-let workMinutes = parseInt(document.getElementById("workTime").value);
-let breakMinutes = parseInt(document.getElementById("breakTime").value);
-
 function startTimer() {
+    workMinutes = parseInt(document.getElementById("workTime").value);
+    breakMinutes = parseInt(document.getElementById("breakTime").value);
     if (isWorkTime) {
         timeLeft = workMinutes * 60;
     } else {
