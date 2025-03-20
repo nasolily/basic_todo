@@ -1,0 +1,38 @@
+#pomodoro-timer {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #d9a0b9;
+    border-radius: 5px;
+    background-color: rgba(241, 231, 233, 0.774);
+    text-align: center;
+    position: absolute; /* Important for moving! */
+    cursor: grab; /* Shows a grab cursor */
+}
+
+#pomodoro-timer h3 {
+    color: #d3b0b7;
+    margin-bottom: 10px;
+}
+
+#pomodoro-timer label {
+    display: block;
+    margin-bottom: 5px;
+    color: #c291a6;
+}
+
+#pomodoro-timer input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #dfb9ca6c;
+    border-radius: 3px;
+}
+
+#pomodoro-timer button {
+    margin: 5px;
+}
+
+#pomodoro-timer #timer {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #c291a6;
+}
