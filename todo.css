@@ -31,7 +31,8 @@ html, body {
 }
 
 .todo {
-    width: 100%;
+    width: 540px;
+    position: relative;
     max-width: 540px;
     background: rgba(241, 231, 233, 0.774);
     margin: 100px auto 20px;
