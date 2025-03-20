@@ -22,14 +22,15 @@
             <button class="clear-button" onclick="clearTasks()">clear tasks</button>
 
             <div id="pomodoro-timer">
+                <div id="drag-handle">⋮⋮</div>
                 <h3>Pomodoro Timer</h3>
-                <label for="workTime">work time (minutes):</label>
+                <label for="workTime">Work Time (minutes):</label>
                 <input type="number" id="workTime" value="25">
-                <label for="breakTime">break time (minutes):</label>
+                <label for="breakTime">Break Time (minutes):</label>
                 <input type="number" id="breakTime" value="5">
                 <div id="timer">25:00</div>
-                <button id="startButton">start</button>
-                <button id="stopButton">stop</button>
+                <button id="startButton">Start</button>
+                <button id="stopButton">Stop</button>
                 <audio id="startSound" src="start.wav"></audio>
                 <audio id="endSound" src="end.wav"></audio>
             </div>
