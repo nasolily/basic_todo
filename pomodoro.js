@@ -62,5 +62,16 @@ function updateDisplay() {
     document.getElementById("timer").textContent = minutes + ":" + displaySeconds;
 }
 
+function resetTimer() {
+    clearInterval(timer);
+    if (isWorkTime) {
+        timeLeft = workMinutes * 60;
+    } else {
+        timeLeft = breakMinutes * 60;
+    }
+    updateDisplay();
+}
+
 document.getElementById("startButton").addEventListener("click", startTimer);
 document.getElementById("stopButton").addEventListener("click", stopTimer);
+document.getElementById("resetButton").addEventListener("click", resetTimer);
