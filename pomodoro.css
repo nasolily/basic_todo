@@ -36,3 +36,20 @@
     margin-bottom: 10px;
     color: #c291a6;
 }
+
+#drag-handle {
+    cursor: grab;
+    font-size: 16px;
+    color: #c291a6;
+    margin-bottom: 5px;
+}
+#pomodoro-timer {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #d9a0b9;
+    border-radius: 5px;
+    background-color: rgba(241, 231, 233, 0.774);
+    text-align: center;
+    position: absolute;
+    cursor: grab;
+}
