@@ -8,6 +8,8 @@ let breakMinutes = parseInt(document.getElementById("breakTime").value);
 
 const pomodoroTimer = document.getElementById("pomodoro-timer");
 const dragHandle = document.getElementById("drag-handle");
+const workInput = document.getElementById("workTime");
+const breakInput = document.getElementById("breakTime");
 
 dragHandle.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -28,8 +30,8 @@ document.addEventListener("mouseup", () => {
 });
 
 function startTimer() {
-    workMinutes = parseInt(document.getElementById("workTime").value);
-    breakMinutes = parseInt(document.getElementById("breakTime").value);
+    workMinutes = parseInt(workInput.value);
+    breakMinutes = parseInt(breakInput.value);
     if (isWorkTime) {
         timeLeft = workMinutes * 60;
     } else {
@@ -71,6 +73,30 @@ function resetTimer() {
     }
     updateDisplay();
 }
+
+function updateTimerDisplay() {
+    if (isWorkTime) {
+        timeLeft = parseInt(workInput.value) * 60;
+    } else {
+        timeLeft = parseInt(breakInput.value) * 60;
+    }
+    updateDisplay();
+}
+
+workInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        updateTimerDisplay();
+    }
+});
+
+breakInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        updateTimerDisplay();
+    }
+});
+
+workInput.addEventListener("change", updateTimerDisplay);
+breakInput.addEventListener("change", updateTimerDisplay);
 
 document.getElementById("startButton").addEventListener("click", startTimer);
 document.getElementById("stopButton").addEventListener("click", stopTimer);
