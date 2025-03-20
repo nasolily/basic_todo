@@ -6,7 +6,7 @@ inputBox.addEventListener("keyup", function(event) {
         addTask();
     }
 });
-
+ 
 function addTask() {
     if (inputBox.value === '') {
         alert("don't leave me blank !");
