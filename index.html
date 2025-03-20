@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="todo.css">
-        <link rel="icon" type="image/x-icon" href="images/heart-outline.png">
-        <title>to-do list</title>
-    </head>
-    <header>
-        <!-- <nav>
-            <a href="home.html">home</a>
-            <a href="stopwatch.html">stopwatch</a>
-            <a href="pomodoro.html">pomodoro</a>
-        </nav>-->
-    
-        </header>
-        <body>
-            <div class="container">
-                
-                <div class="todo">
-                    <h2>to-do list ☁️</h2>
-                    
-                    <div class="textbox">
-                        <input type="text" id="input-box" placeholder="add your text...">
-                        <button onclick="addTask()">add</button>
-                    </div>
-                    <ul id="list-container">
-                        <!-- <li class="checked">task 1</li>
-                        <li>task 2</li>
-                        <li>task 3</li> -->
-                    </ul>
-                    <button class="clear-button" onclick="clearTasks()">clear tasks</button>
-                </div>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="todo.css">
+    <link rel="icon" type="image/x-icon" href="images/heart-outline.png">
+    <title>to-do list</title>
+</head>
+<header>
+</header>
+<body>
+    <div class="container">
+        <div class="todo">
+            <h2>to-do list ☁️</h2>
+            <div class="textbox">
+                <input type="text" id="input-box" placeholder="add your text...">
+                <button onclick="addTask()">add</button>
             </div>
-            <script src="script.js"></script>
-        </body>
+            <ul id="list-container">
+            </ul>
+            <button class="clear-button" onclick="clearTasks()">clear tasks</button>
+
+            <div id="pomodoro-timer">
+                <h3>Pomodoro Timer</h3>
+                <label for="workTime">work time (minutes):</label>
+                <input type="number" id="workTime" value="25">
+                <label for="breakTime">break time (minutes):</label>
+                <input type="number" id="breakTime" value="5">
+                <div id="timer">25:00</div>
+                <button id="startButton">start</button>
+                <button id="stopButton">stop</button>
+                <audio id="startSound" src="start.wav"></audio>
+                <audio id="endSound" src="end.wav"></audio>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="pomodoro.js"></script>
+</body>
 </html>
