@@ -5,7 +5,7 @@ let isDragging = false;
 let offsetX, offsetY;
 let workMinutes = parseInt(document.getElementById("workTime").value);
 let breakMinutes = parseInt(document.getElementById("breakTime").value);
-
+ 
 const pomodoroTimer = document.getElementById("pomodoro-timer");
 const dragHandle = document.getElementById("drag-handle");
 
