@@ -10,7 +10,7 @@ const pomodoroTimer = document.getElementById("pomodoro-timer");
 const dragHandle = document.getElementById("drag-handle");
 const workInput = document.getElementById("workTime");
 const breakInput = document.getElementById("breakTime");
-const clickSound = document.getElementById("startSound"); // Renamed for clarity
+const clickSound = document.getElementById("startSound"); 
 
 dragHandle.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -21,8 +21,18 @@ dragHandle.addEventListener("mousedown", (e) => {
 
 document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-    pomodoroTimer.style.left = e.clientX - offsetX + "px";
-    pomodoroTimer.style.top = e.clientY - offsetY + "px";
+
+    let newX = e.clientX - offsetX;
+    let newY = e.clientY - offsetY;
+
+    const maxX = window.innerWidth - pomodoroTimer.offsetWidth;
+    const maxY = window.innerHeight - pomodoroTimer.offsetHeight;
+
+    newX = Math.min(Math.max(0, newX), maxX);
+    newY = Math.min(Math.max(0, newY), maxY);
+
+    pomodoroTimer.style.left = newX + "px";
+    pomodoroTimer.style.top = newY + "px";
 });
 
 document.addEventListener("mouseup", () => {
@@ -107,3 +117,11 @@ breakInput.addEventListener("change", updateTimerDisplay);
 document.getElementById("startButton").addEventListener("click", startTimer);
 document.getElementById("stopButton").addEventListener("click", stopTimer);
 document.getElementById("resetButton").addEventListener("click", resetTimer);
+
+window.addEventListener('load', () => {
+    const screenWidth = window.innerWidth;
+    const timerWidth = pomodoroTimer.offsetWidth;
+    const centerPosition = (screenWidth - timerWidth) / 2;
+
+    pomodoroTimer.style.left = centerPosition + 'px';
+});
