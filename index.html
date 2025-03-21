@@ -7,8 +7,6 @@
     <link rel="icon" type="image/x-icon" href="images/heart-outline.png">
     <title>to-do list</title>
 </head>
-<header>
-</header>
 <body>
     <div class="container">
         <div class="todo">
@@ -20,21 +18,20 @@
             <ul id="list-container">
             </ul>
             <button class="clear-button" onclick="clearTasks()">clear tasks</button>
-
-           <div id="pomodoro-timer">
-                <div id="drag-handle">⋮⋮</div>
-                <h3>pomodoro timer</h3>
-                <label for="workTime">work time (minutes):</label>
-                <input type="number" id="workTime" value="25">
-                <label for="breakTime">break time (minutes):</label>
-                <input type="number" id="breakTime" value="5">
-                <div id="timer">25:00</div>
-                <button id="startButton">start</button>
-                <button id="stopButton">stop</button>
-                <button id="resetButton">reset</button>
-                <audio id="startSound" src="audio/mouse_click.mp4"></audio>
-                <audio id="endSound" src="audio/alarm_calm.mp4"></audio>
-            </div>
+        </div>
+        <div id="pomodoro-timer">
+            <div id="drag-handle">⋮⋮</div>
+            <h3>pomodoro timer</h3>
+            <label for="workTime">work time (minutes):</label>
+            <input type="number" id="workTime" value="25">
+            <label for="breakTime">break time (minutes):</label>
+            <input type="number" id="breakTime" value="5">
+            <div id="timer">25:00</div>
+            <button id="startButton">start</button>
+            <button id="stopButton">stop</button>
+            <button id="resetButton">reset</button>
+            <audio id="startSound" src="audio/mouse_click.mp4"></audio>
+            <audio id="endSound" src="audio/alarm_calm.mp4"></audio>
         </div>
     </div>
     <script src="script.js"></script>
