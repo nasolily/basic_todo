@@ -10,6 +10,7 @@ const pomodoroTimer = document.getElementById("pomodoro-timer");
 const dragHandle = document.getElementById("drag-handle");
 const workInput = document.getElementById("workTime");
 const breakInput = document.getElementById("breakTime");
+const clickSound = document.getElementById("startSound"); // Renamed for clarity
 
 dragHandle.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -38,7 +39,8 @@ function startTimer() {
         timeLeft = breakMinutes * 60;
     }
 
-    document.getElementById("startSound").play();
+    clickSound.currentTime = 0;
+    clickSound.play();
 
     timer = setInterval(function() {
         timeLeft--;
@@ -54,6 +56,8 @@ function startTimer() {
 }
 
 function stopTimer() {
+    clickSound.currentTime = 0;
+    clickSound.play();
     clearInterval(timer);
 }
 
@@ -65,6 +69,8 @@ function updateDisplay() {
 }
 
 function resetTimer() {
+    clickSound.currentTime = 0;
+    clickSound.play();
     clearInterval(timer);
     if (isWorkTime) {
         timeLeft = workMinutes * 60;
