@@ -22,17 +22,24 @@
         <div id="pomodoro-timer">
             <div id="drag-handle">⋮⋮</div>
             <h3>pomodoro timer</h3>
+        
+            <!-- Indicator for work/break states (positioned above the timer) -->
+            <div id="pomodoro-indicator">˗ˋˏ ♡ ˎˊ˗</div>
+        
             <label for="workTime">work time (minutes):</label>
             <input type="number" id="workTime" value="25">
             <label for="breakTime">break time (minutes):</label>
             <input type="number" id="breakTime" value="5">
             <div id="timer">25:00</div>
+            
             <button id="startButton">start</button>
             <button id="stopButton">stop</button>
             <button id="resetButton">reset</button>
             <audio id="startSound" src="audio/mouse_click.mp4"></audio>
             <audio id="endSound" src="audio/alarm_calm.mp4"></audio>
         </div>
+        
+        
     </div>
     <script src="script.js"></script>
     <script src="pomodoro.js"></script>
