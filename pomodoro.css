@@ -9,7 +9,7 @@
     cursor: grab;
     left: 50%;
 }
- 
+
 #pomodoro-timer h3 {
     color: #d3b0b7;
     margin-bottom: 10px;
@@ -42,5 +42,29 @@
     cursor: grab;
     font-size: 16px;
     color: #c291a6;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
+
+#pomodoro-indicator {
+    margin-top: 0%;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    color: #c291a6;
+    border-bottom: 2px dotted #dfb9ca6c;
+}
+
+
+.heart-quote {
+    font-weight: bold;
+    color: #d3b0b7;
+}
+
+#pomodoro-timer h3 {
+    color: #d3b0b7;
+    margin-bottom: 0%;
+}
+
+
+
