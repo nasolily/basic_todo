@@ -6,7 +6,7 @@ inputBox.addEventListener("keyup", function(event) {
         addTask();
     }
 });
- 
+
 function addTask() {
     if (inputBox.value === '') {
         alert("don't leave me blank !");
@@ -36,6 +36,7 @@ listContainer.addEventListener("click", function(e){
 function saveData(){
     localStorage.setItem("data", listContainer.innerHTML);
 }
+
 function showTask(){
     listContainer.innerHTML = localStorage.getItem("data");
 }
