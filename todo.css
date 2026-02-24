@@ -3,11 +3,10 @@ html {
     background-image: url("images/background.gif");
     background-repeat: no-repeat;
     background-size: cover;
-    
 }
 
 *:active {
-    cursor: url("images/hand-pointer.png"), auto;
+    cursor: url("images/pointer.png"), auto;
 }
 
 html, body {
@@ -21,7 +20,7 @@ html, body {
     padding: 0;
     font-family: monaco, Consolas, "Lucida Console", monospace;
     box-sizing: border-box;
-    cursor: url("images/heart-outline.png"), auto; 
+    cursor: url("images/cursor.png"), auto; 
 }
 
 .container {
@@ -92,7 +91,7 @@ ul li {
     color: #c291a6;
     padding: 14px 8px 12px 50px;
     user-select: none;
-    cursor: url("images/hand-pointer.png");
+    cursor: url("images/pointer.png");
     position: relative;
 }
 
@@ -132,7 +131,7 @@ ul li span {
 
 ul li span:hover{
     background: rgba(224, 207, 211, 0.76);
-    cursor: url("images/hand-pointer.png"), auto;
+    cursor: url("images/pointer.png"), auto;
 }
 
 .clear-button {
@@ -141,11 +140,11 @@ ul li span:hover{
     border: none;
     padding: 8px 16px; 
     border-radius: 5px; 
-    cursor: pointer; 
+    cursor: url("images/pointer.png"); 
     font-size: 14px; 
     margin-top: 10px; 
 }
 
 .clear-button:hover {
-    background-color: rgb(187, 131, 164);
+    background-color: rgb(229 159 200);
 }
