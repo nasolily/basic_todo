@@ -1,10 +1,8 @@
-let timer;
+let timer = null;
 let timeLeft;
 let isWorkTime = true;
 let isDragging = false;
 let offsetX, offsetY;
-let workMinutes = parseInt(document.getElementById("workTime").value);
-let breakMinutes = parseInt(document.getElementById("breakTime").value);
 
 const pomodoroTimer = document.getElementById("pomodoro-timer");
 const dragHandle = document.getElementById("drag-handle");
@@ -12,6 +10,17 @@ const workInput = document.getElementById("workTime");
 const breakInput = document.getElementById("breakTime");
 const clickSound = document.getElementById("startSound");
 const indicator = document.getElementById("pomodoro-indicator");
+
+const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stopButton");
+const resetButton = document.getElementById("resetButton");
+
+let workMinutes = parseInt(workInput.value);
+let breakMinutes = parseInt(breakInput.value);
+
+/* =========================
+   DRAG FUNCTIONALITY
+========================= */
 
 dragHandle.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -41,121 +50,154 @@ document.addEventListener("mouseup", () => {
     pomodoroTimer.style.cursor = "grab";
 });
 
-// Set the default heart quote with dotted line
+/* =========================
+   INDICATOR TEXT
+========================= */
+
 function setHeartQuote() {
     indicator.textContent = "˗ˋˏ ♡ ˎˊ˗";
-    indicator.classList.add("heart-quote");  // Apply larger font size for heart quote
+    indicator.classList.add("heart-quote");
 }
 
-// Reset timer and bring back the heart quote
-function resetTimer() {
-    clickSound.currentTime = 0;
-    clickSound.play();
-    clearInterval(timer);
-
-    if (isWorkTime) {
-        timeLeft = workMinutes * 60;
-    } else {
-        timeLeft = breakMinutes * 60;
-    }
-    updateDisplay();
-
-    // Reset to the heart quote and apply dotted line
-    setHeartQuote();
-}
-
-// Update the indicator text based on work/break time
 function updateIndicator() {
     if (isWorkTime) {
         indicator.textContent = "let's get to work!";
-        indicator.classList.remove("heart-quote");  // Remove larger font for work phase
+        indicator.classList.remove("heart-quote");
     } else {
         indicator.textContent = "take a break!";
-        indicator.classList.remove("heart-quote");  // Remove larger font for break phase
+        indicator.classList.remove("heart-quote");
     }
 }
 
-// Function to start the timer
+/* =========================
+   TIMER LOGIC
+========================= */
+
 function startTimer() {
-    workMinutes = parseInt(workInput.value);
-    breakMinutes = parseInt(breakInput.value);
-    if (isWorkTime) {
-        timeLeft = workMinutes * 60;
-    } else {
-        timeLeft = breakMinutes * 60;
+    if (timer !== null) return; //no speedy time multiplying
+
+    // only set initial timeLeft if currently not paused (null)
+    if (timeLeft === undefined || timeLeft === null) {
+        workMinutes = parseInt(workInput.value);
+        breakMinutes = parseInt(breakInput.value);
+        timeLeft = (isWorkTime ? workMinutes : breakMinutes) * 60;
     }
 
     clickSound.currentTime = 0;
     clickSound.play();
 
-    // Start timer and update indicator
-    updateIndicator();  // Ensure indicator is updated at the start
-    timer = setInterval(function() {
+    updateIndicator();
+    updateDisplay();
+
+    startButton.disabled = true;
+
+    timer = setInterval(() => {
         timeLeft--;
+
         if (timeLeft < 0) {
             clearInterval(timer);
+            timer = null;
+            timeLeft = null; // clear so the next phase starts fresh
+
             document.getElementById("endSound").play();
+
             isWorkTime = !isWorkTime;
-            updateIndicator();  // Update indicator when switching between work and break
-            startTimer();  // Restart the timer
+            startButton.disabled = false;
+
+            startTimer(); // automatically start next phase
         } else {
             updateDisplay();
         }
     }, 1000);
 }
 
-// Stop the timer
 function stopTimer() {
     clickSound.currentTime = 0;
     clickSound.play();
+
     clearInterval(timer);
+    timer = null;
+
+    startButton.disabled = false;
 }
 
-// Update the display of the timer
+function resetTimer() {
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    clearInterval(timer);
+    timer = null;
+    timeLeft = null; // Clear saved time on manual reset
+
+    startButton.disabled = false;
+
+    workMinutes = parseInt(workInput.value);
+    breakMinutes = parseInt(breakInput.value);
+
+    timeLeft = (isWorkTime ? workMinutes : breakMinutes) * 60;
+
+    updateDisplay();
+    setHeartQuote();
+}
+
+/* =========================
+   DISPLAY
+========================= */
+
 function updateDisplay() {
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
     let displaySeconds = seconds < 10 ? "0" + seconds : seconds;
-    document.getElementById("timer").textContent = minutes + ":" + displaySeconds;
+
+    document.getElementById("timer").textContent =
+        minutes + ":" + displaySeconds;
 }
 
-// Update the timer display when inputs change
 function updateTimerDisplay() {
-    if (isWorkTime) {
-        timeLeft = parseInt(workInput.value) * 60;
-    } else {
-        timeLeft = parseInt(breakInput.value) * 60;
-    }
+    if (timer !== null) return;
+
+    timeLeft = (isWorkTime
+        ? parseInt(workInput.value)
+        : parseInt(breakInput.value)) * 60;
+
     updateDisplay();
 }
 
+/* =========================
+   INPUT EVENTS
+========================= */
+
 workInput.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-        updateTimerDisplay();
-    }
+    if (e.key === "Enter") updateTimerDisplay();
 });
 
 breakInput.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-        updateTimerDisplay();
-    }
+    if (e.key === "Enter") updateTimerDisplay();
 });
 
 workInput.addEventListener("change", updateTimerDisplay);
 breakInput.addEventListener("change", updateTimerDisplay);
 
-document.getElementById("startButton").addEventListener("click", startTimer);
-document.getElementById("stopButton").addEventListener("click", stopTimer);
-document.getElementById("resetButton").addEventListener("click", resetTimer);
+/* =========================
+   BUTTON EVENTS
+========================= */
 
-// Set the initial heart quote on page load
-window.addEventListener('load', () => {
+startButton.addEventListener("click", startTimer);
+stopButton.addEventListener("click", stopTimer);
+resetButton.addEventListener("click", resetTimer);
+
+/* =========================
+   ON LOAD
+========================= */
+
+window.addEventListener("load", () => {
     const screenWidth = window.innerWidth;
     const timerWidth = pomodoroTimer.offsetWidth;
     const centerPosition = (screenWidth - timerWidth) / 2;
 
-    pomodoroTimer.style.left = centerPosition + 'px';
+    pomodoroTimer.style.left = centerPosition + "px";
 
-    // Set the initial default quote in the indicator and match the color
+    timeLeft = workMinutes * 60;
+    updateDisplay();
     setHeartQuote();
 });
